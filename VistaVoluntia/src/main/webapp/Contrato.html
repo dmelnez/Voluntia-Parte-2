@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Voluntia</title>
+  <link rel="icon" type="image/x-icon" href="Imagenes/favicon.ico">
+
+<link
+	href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+	rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script defer
+	src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body>
+	<section x-data="{ atTop: true }">
+		<div
+			class="fixed z-50 w-full px-8 py-4 transition-all duration-1000 rounded-full mt-4 max-w-2xl inset-x-0 mx-auto ease-in-out transform"
+			:class="{ 'bg-black bg-opacity-90 backdrop-blur-xl max-w-4xl': !atTop, 'max-w-2xl': atTop }"
+			@scroll.window="atTop = (window.pageYOffset > 50 ? false : true)">
+			<div x-data="{ open: false }"
+				class="flex flex-col w-full p-2 mx-auto md:items-center md:justify-between md:flex-row">
+				<div class="flex flex-row items-center justify-between">
+					<span class="font-bold tracking-tighter uppercase"
+						:class="{ 'text-black': atTop, 'text-white': !atTop }">✺
+						Voluntia</span>
+					<button class="md:hidden focus:outline-none" @click="open = !open">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+							fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round"
+								stroke-linejoin="round" stroke-width="2"
+								d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+					</button>
+				</div>
+				<nav :class="{'flex': open, 'hidden': !open}"
+					class="flex-col flex-grow gap-8 hidden pb-4 md:pb-0 md:flex md:flex-row lg:ml-auto justify-end">
+					<a :class="{ 'text-black': atTop, 'text-white': !atTop }"
+						href="index.html">Inicio</a> <a
+						:class="{ 'text-black': atTop, 'text-white': !atTop }"
+						href="Nosotros.html">Nosotros</a> <a
+						:class="{ 'text-black': atTop, 'text-white': !atTop }"
+						href="ManualUsuario.html">Manual Usuario</a> <a
+						:class="{ 'text-black': atTop, 'text-white': !atTop }"
+						href="login.html">Acceso</a>
+				</nav>
+			</div>
+		</div>
+
+		<div class="bg-white pt-24 px-4">
+			<div class="max-w-4xl mx-auto">
+				<form id="contratoForm" action="/contrato" method="post" novalidate
+					class="mt-4" enctype="multipart/form-data">
+					<input type="hidden" name="accion" value="aniadir"> <input
+						type="hidden" id="idOrganizacion" name="idOrganizacion"
+						value="${sessionScope.idOrganizacion}" />
+
+					<div class="mb-6">
+						<div class="grid grid-cols-2 gap-4">
+							<div>
+								<label for="nombreCliente"
+									class="block text-gray-700 dark:text-white mb-1">Nombre
+									Representante:</label> <input type="text" id="nombreCliente"
+									name="nombreCliente"
+									class="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none"
+									required>
+							</div>
+							<div>
+								<label for="direccionCliente"
+									class="block text-gray-700 dark:text-white mb-1">Dirección:</label>
+								<input type="text" id="direccionCliente" name="direccionCliente"
+									class="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none"
+									required>
+							</div>
+						</div>
+						<div class="mt-4">
+							<label for="cifEmpresa"
+								class="block text-gray-700 dark:text-white mb-1">CIF de
+								la Empresa:</label> <input type="text" id="cifEmpresa" name="cifEmpresa"
+								class="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none"
+								required>
+						</div>
+						<div class="mt-4">
+							<label for="emailUsuario"
+								class="block text-gray-700 dark:text-white mb-1">Email:
+								Se le enviará un correo de confirmación</label> <input type="email"
+								id="emailUsuario" name="emailUsuario"
+								class="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none"
+								required>
+						</div>
+						<div class="grid grid-cols-2 gap-4 mt-4">
+							<div>
+								<label for="importe"
+									class="block text-gray-700 dark:text-white mb-1">Importe:</label>
+								<input type="number" id="importe" name="importe" step="0.01"
+									value="99" readonly
+									class="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none">
+							</div>
+							<div>
+								<label for="dniFirmante"
+									class="block text-gray-700 dark:text-white mb-1">DNI
+									del Firmante:</label> <input type="text" id="dniFirmante"
+									name="dniFirmante"
+									class="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none"
+									required>
+							</div>
+						</div>
+					</div>
+
+					<div class="w-full h-px max-w-6xl mx-auto my-8"
+						style="background-image: linear-gradient(90deg, rgba(149, 131, 198, 0) 1.46%, rgba(149, 131, 198, 0.6) 40.83%, rgba(149, 131, 198, 0.3) 65.57%, rgba(149, 131, 198, 0) 107.92%);">
+					</div>
+
+
+					<h1 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Datos
+						de la Organización</h1>
+					<div class="mb-6">
+						<div class="grid grid-cols-2 gap-4">
+							<div>
+								<label for="nombreOrganizacion"
+									class="block text-gray-700 dark:text-white mb-1">Nombre
+									de la Organización</label> <input type="text" id="nombreOrganizacion"
+									name="nombreOrganizacion"
+									class="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none"
+									required>
+							</div>
+							<div>
+								<label for="nifOrganizacion"
+									class="block text-gray-700 dark:text-white mb-1">NIF de
+									la Organización</label> <input type="text" id="nifOrganizacion"
+									name="nifOrganizacion"
+									class="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none"
+									required>
+							</div>
+						</div>
+						<div class="mt-4">
+							<label for="direccionOrganizacion"
+								class="block text-gray-700 dark:text-white mb-1">Dirección</label>
+							<input type="text" id="direccionOrganizacion"
+								name="direccionOrganizacion"
+								class="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none"
+								required>
+						</div>
+						<div class="grid grid-cols-2 gap-4 mt-4">
+							<div>
+								<label for="ciudadOrganizacion"
+									class="block text-gray-700 dark:text-white mb-1">Ciudad</label>
+								<input type="text" id="ciudadOrganizacion"
+									name="ciudadOrganizacion"
+									class="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none"
+									required>
+							</div>
+							<div>
+								<label for="provinciaOrganizacion"
+									class="block text-gray-700 dark:text-white mb-1">Provincia</label>
+								<input type="text" id="provinciaOrganizacion"
+									name="provinciaOrganizacion"
+									class="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none"
+									required>
+							</div>
+						</div>
+						<div class="grid grid-cols-2 gap-4 mt-4">
+							<div>
+								<label for="emailOrganizacion"
+									class="block text-gray-700 dark:text-white mb-1">Email</label>
+								<input type="email" id="emailOrganizacion"
+									name="emailOrganizacion"
+									class="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none"
+									required>
+							</div>
+							<div>
+								<label for="telefonoOrganizacion"
+									class="block text-gray-700 dark:text-white mb-1">Teléfono</label>
+								<input type="text" id="telefonoOrganizacion"
+									name="telefonoOrganizacion"
+									class="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none"
+									required>
+							</div>
+						</div>
+						<div class="mt-4">
+							<label for="tipoInstitucionOrganizacion"
+								class="block text-gray-700 dark:text-white mb-1">Tipo de
+								Institución</label> <input type="text" id="tipoInstitucionInstitucion"
+								name="tipoInstitucionOrganizacion"
+								class="w-full rounded-lg border py-2 px-3 dark:bg-gray-700 dark:text-white dark:border-none"
+								required>
+						</div>
+					</div>
+
+					<div class="mt-8 flex justify-end">
+						<button type="button" id="submitContratoForm"
+							class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-700 dark:bg-teal-600 dark:hover:bg-teal-900">
+							Siguiente</button>
+					</div>
+				</form>
+
+				<div id="loader"
+					class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 hidden">
+					<div
+						class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-white"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script>
+        document.getElementById('submitContratoForm').addEventListener('click', async function () {
+            document.querySelectorAll('.error-message').forEach(e => e.remove());
+            let valid = true;
+            document.querySelectorAll('#contratoForm [required]').forEach(f => {
+                if (!f.value.trim()) {
+                    valid = false;
+                    const err = document.createElement('span');
+                    err.className = 'error-message text-red-500 text-sm mt-1';
+                    err.textContent = 'Este campo es obligatorio.';
+                    f.parentNode.appendChild(err);
+                } else if (f.type === 'email' && !f.value.includes('@')) {
+                    valid = false;
+                    const err = document.createElement('span');
+                    err.className = 'error-message text-red-500 text-sm mt-1';
+                    err.textContent = 'El email debe contener @.';
+                    f.parentNode.appendChild(err);
+                }
+            });
+            if (!valid) {
+                document.querySelector('.error-message').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            const btn = this;
+            if (btn.disabled) return;
+            btn.disabled = true;
+            document.getElementById('loader').classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+            const form = document.getElementById('contratoForm');
+            const formData = new FormData(form);
+            try {
+                const res = await fetch('/VistaVoluntia/contrato', { method: 'POST', body: formData });
+                if (res.ok) {
+                    localStorage.setItem('price', formData.get('importe'));
+                    localStorage.setItem('idPlan', formData.get('idPlan'));
+                    window.location.href = '/VistaVoluntia/contratoValidacion.html';
+                } else {
+                    alert('Hubo un error al procesar el formulario.');
+                    btn.disabled = false;
+                    document.getElementById('loader').classList.add('hidden');
+                    document.body.classList.remove('overflow-hidden');
+                }
+            } catch (e) {
+                alert('Error de red. Intenta nuevamente.');
+                btn.disabled = false;
+                document.getElementById('loader').classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contratoForm');
+            const idPlan = sessionStorage.getItem('idPlan');
+            const price = sessionStorage.getItem('price');
+            if (idPlan) {
+                const inp = document.createElement('input');
+                inp.type = 'hidden';
+                inp.name = 'idPlan';
+                inp.value = idPlan;
+                form.appendChild(inp);
+            }
+            if (price) {
+                document.getElementById('importe').value = price;
+            }
+            sessionStorage.removeItem('idPlan');
+            sessionStorage.removeItem('price');
+        });
+    </script>
+	<script src="//unpkg.com/alpinejs" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Voluntia</title>
+<link rel="icon" type="image/x-icon" href="Imagenes/favicon.ico">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer
+	src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+	rel="stylesheet">
+</head>
+<body class="relative">
+	<section x-data="{ atTop: true }">
+		<div
+			class="fixed z-50 w-full px-8 py-4 transition-all duration-1000 rounded-full mt-4 max-w-2xl inset-x-0 mx-auto ease-in-out transform"
+			:class="{ 'bg-black bg-opacity-90 backdrop-blur-xl max-w-4xl': !atTop, 'max-w-2xl': atTop }"
+			@scroll.window="atTop = (window.pageYOffset > 50 ? false : true)">
+			<div x-data="{ open: false }"
+				class="flex flex-col w-full p-2 mx-auto md:items-center md:justify-between md:flex-row">
+				<div class="flex flex-row items-center justify-between">
+					<span class="font-bold tracking-tighter uppercase"
+						:class="{ 'text-black': atTop, 'text-white': !atTop }">✺
+						Voluntia</span>
+					<button class="md:hidden focus:outline-none" @click="open = !open">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+							fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round"
+								stroke-linejoin="round" stroke-width="2"
+								d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+					</button>
+				</div>
+				<nav :class="{'flex': open, 'hidden': !open}"
+					class="flex-col flex-grow gap-8 hidden pb-4 md:pb-0 md:flex md:flex-row lg:ml-auto justify-end">
+					<a :class="{ 'text-black': atTop, 'text-white': !atTop }"
+						href="index.html">Inicio</a> <a
+						:class="{ 'text-black': atTop, 'text-white': !atTop }"
+						href="Nosotros.html">Nosotros</a> <a
+						:class="{ 'text-black': atTop, 'text-white': !atTop }"
+						href="ManualUsuario.html">Manual Usuario</a> <a
+						:class="{ 'text-black': atTop, 'text-white': !atTop }"
+						href="login.html">Acceso</a>
+				</nav>
+			</div>
+		</div>
+	</section>
+
+	<div class="bg-white pt-24 px-4 min-h-screen"></div>
+
+	<div
+		class="fixed inset-0 flex items-center justify-center z-40 pointer-events-none">
+		<video src="Imagenes/ManualUsuario.mp4" controls autoplay loop muted
+			playsinline
+			class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-2/5 rounded-lg shadow-2xl pointer-events-auto"></video>
+	</div>
+</body>
+</html>

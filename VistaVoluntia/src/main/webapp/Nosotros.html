@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voluntia</title>
+  <link rel="icon" type="image/x-icon" href="Imagenes/favicon.ico">
+
+<link
+	href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+	rel="stylesheet">
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script defer
+		src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+	<section x-data="{ atTop: true }">
+		<div
+			class="fixed z-50 w-full px-8 py-4 transition-all duration-1000 rounded-full mt-4 max-w-2xl inset-x-0 mx-auto ease-in-out transform"
+			:class="{ 'bg-black bg-opacity-90 backdrop-blur-xl max-w-4xl': !atTop, 'max-w-2xl': atTop }"
+			@scroll.window="atTop = (window.pageYOffset > 50 ? false : true)">
+			<div x-data="{ open: false }"
+				class="flex flex-col w-full p-2 mx-auto md:items-center md:justify-between md:flex-row">
+				<div class="flex flex-row items-center justify-between">
+					<span class="font-bold tracking-tighter uppercase"
+						:class="{ 'text-black': atTop, 'text-white': !atTop }">✺
+						Voluntia</span>
+					<button class="md:hidden focus:outline-none" @click="open = !open">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+							fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round"
+								stroke-linejoin="round" stroke-width="2"
+								d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+					</button>
+				</div>
+				<nav :class="{'flex': open, 'hidden': !open}"
+					class="flex-col flex-grow gap-8 hidden pb-4 md:pb-0 md:flex md:flex-row lg:ml-auto justify-end">
+					<a :class="{ 'text-black': atTop, 'text-white': !atTop }"
+						href="index.html">Inicio</a> <a
+						:class="{ 'text-black': atTop, 'text-white': !atTop }"
+						href="Nosotros.html">Nosotros</a> <a
+						:class="{ 'text-black': atTop, 'text-white': !atTop }"
+						href="ManualUsuario.html">Manual Usuario</a> <a
+						:class="{ 'text-black': atTop, 'text-white': !atTop }"
+						href="login.html">Acceso</a>
+				</nav>
+			</div>
+		</div>
+
+	</section>
+
+	<main>
+		<section id="nosotros" class="py-16 bg-white">
+			<div class="max-w-4xl mx-auto px-4" style="margin-top: 40px;">
+				<h2 class="text-3xl font-semibold mb-6">Quiénes Somos</h2>
+				<p class="mb-4">Voluntia es una empresa especializada en la
+					gestión integral de equipos y recursos para organizaciones de
+					protección civil y entidades de emergencias. Nuestro objetivo es
+					proporcionar soluciones tecnológicas y operativas que optimicen la
+					coordinación de voluntarios, profesionales y vehículos en
+					situaciones de crisis o actividades planificadas.</p>
+				<p class="mb-4">Con más de una década de experiencia colaborando
+					con cuerpos de emergencia, bomberos, Cruz Roja y protección civil,
+					hemos diseñado herramientas que permiten asignar tareas, realizar
+					seguimiento de asistencia y lanzar alertas de forma instantánea.
+					Gracias a nuestro sistema, los coordinadores obtienen visibilidad
+					en tiempo real de la disponibilidad de personal, vehículos y
+					materiales de apoyo.</p>
+				<p class="mb-4">Nuestra plataforma garantiza que cada servicio y
+					evento sea cubierto con los recursos adecuados, minimizando tiempos
+					de espera y maximizando la eficacia en la intervención.</p>
+				<p class="mb-4">Implementamos procesos de retroalimentación
+					constante con cada organización para ajustar funcionalidades y
+					optimizar la experiencia de usuario en web y móvil.</p>
+				<p class="mb-4">Nuestra visión es convertirnos en el referente
+					mundial en sistemas de gestión de emergencias, integrando
+					inteligencia artificial, geolocalización y análisis predictivo para
+					anticipar necesidades y facilitar la toma de decisiones.</p>
+			</div>
+		</section>
+
+		<section id="servicios" class="py-16">
+			<div class="max-w-4xl mx-auto px-4">
+				<h2 class="text-3xl font-semibold mb-6">Nuestros Servicios</h2>
+				<ul class="list-disc list-inside space-y-4">
+					<li><strong>Gestión de Voluntarios:</strong> Registro,
+						validación y asignación de perfiles según capacidades y
+						certificaciones.</li>
+					<li><strong>Asignación de Vehículos:</strong> Control de
+						disponibilidad, mantenimiento y ubicación GPS de ambulancias,
+						camiones y unidades móviles.</li>
+					<li><strong>Planificación de Eventos:</strong> Calendario de
+						actuaciones, entrenamientos y simulacros con opción de
+						inscripción.</li>
+					<li><strong>Seguimiento en Tiempo Real:</strong> Dashboard
+						para coordinadores con estado de personal, vehículos y material
+						desplegado.</li>
+					<li><strong>Alerta de Emergencias:</strong> Notificaciones
+						masivas vía SMS, email y app móvil para movilizar equipos en
+						segundos.</li>
+					<li><strong>Informes y Estadísticas:</strong> Informes
+						automáticos de actividad y análisis de tiempos de respuesta.</li>
+				</ul>
+			</div>
+		</section>
+
+		<section id="eventos" class="py-16 bg-white">
+			<div class="max-w-4xl mx-auto px-4">
+				<h2 class="text-3xl font-semibold mb-6">Eventos del Día</h2>
+				<p class="mb-4">Servicios y eventos disponibles a los que el
+					personal puede apuntarse:</p>
+				<div class="space-y-6">
+					<div class="border p-4 rounded-lg shadow">
+						<h3 class="text-xl font-bold">Simulacro de Evacuación</h3>
+						<p>
+							<strong>Hora:</strong> 10:00 - 12:00
+						</p>
+						<p>
+							<strong>Lugar:</strong> Plaza Mayor
+						</p>
+						<p>
+							<strong>Descripción:</strong> Práctica de evacuación y primeros
+							auxilios.
+						</p>
+						<button
+							class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Apuntarse</button>
+					</div>
+					<div class="border p-4 rounded-lg shadow">
+						<h3 class="text-xl font-bold">Reparto de Material Sanitario</h3>
+						<p>
+							<strong>Hora:</strong> 14:00 - 16:00
+						</p>
+						<p>
+							<strong>Lugar:</strong> Almacén Central
+						</p>
+						<p>
+							<strong>Descripción:</strong> Distribución de equipo de
+							protección personal.
+						</p>
+						<button
+							class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Apuntarse</button>
+					</div>
+					<div class="border p-4 rounded-lg shadow">
+						<h3 class="text-xl font-bold">Patrulla Preventiva Vial</h3>
+						<p>
+							<strong>Hora:</strong> 18:00 - 20:00
+						</p>
+						<p>
+							<strong>Lugar:</strong> Carretera N-420
+						</p>
+						<p>
+							<strong>Descripción:</strong> Control de vías y asistencia vial.
+						</p>
+						<button
+							class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Apuntarse</button>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="vehiculos" class="py-16">
+			<div class="max-w-4xl mx-auto px-4">
+				<h2 class="text-3xl font-semibold mb-6">Asignación de Vehículos</h2>
+				<ul class="list-disc list-inside space-y-2">
+					<li>Visualizar flota en mapa interactivo con ubicación en
+						tiempo real.</li>
+					<li>Asignar unidades a eventos o servicios específicos.</li>
+					<li>Registrar incidencias y necesidades de mantenimiento.</li>
+					<li>Notificar a conductores con rutas optimizadas.</li>
+				</ul>
+			</div>
+		</section>
+
+		<section id="alertas" class="py-16 bg-white">
+			<div class="max-w-4xl mx-auto px-4">
+				<h2 class="text-3xl font-semibold mb-6">Sistema de Alertas de
+					Emergencia</h2>
+				<ul class="list-decimal list-inside space-y-2">
+					<li>Activación en menos de 30 segundos tras validación del
+						coordinador.</li>
+					<li>Integración multicanal: correo electrónico y
+						notificaciones push.</li>
+					<li>Checklist: ubicación, tipo de emergencia, recursos
+						necesarios.</li>
+					<li>Feedback en tiempo real de confirmaciones de recepción.</li>
+				</ul>
+			</div>
+		</section>
+
+		<footer class="bg-white border-t border-gray-200">
+			<div
+				class="max-w-screen-xl mx-auto px-4 py-6 text-center text-gray-600">
+				<p class="text-sm">© 2025 Voluntia. Todos los derechos
+					reservados.</p>
+			</div>
+		</footer>
+	</main>
+
+</body>
+
+</html>

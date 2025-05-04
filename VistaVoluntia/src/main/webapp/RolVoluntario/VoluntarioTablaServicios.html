@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voluntia</title>
+  <link rel="icon" type="image/x-icon" href="../Imagenes/favicon.ico">
+
+<link href="/dist/output.css" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+	rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+	rel="stylesheet" />
+
+</head>
+<style>
+#example_filter {
+	display: none;
+}
+
+.dataTables_length {
+	display: none;
+}
+
+.dataTables_info {
+	display: none;
+}
+
+.dataTables_paginate {
+	display: none;
+}
+
+#dashboard-submenu {
+	z-index: 9999;
+}
+</style>
+
+<body class="bg-gray-50 dark:bg-gray-900">
+
+
+	<div class="min-h-full">
+		<nav class="bg-gray-800">
+			<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+				<div class="flex h-16 items-center justify-between">
+					<div class="flex items-center">
+						<div class="shrink-0"></div>
+						<div class="hidden md:block">
+							<div class="ml-10 flex items-baseline space-x-4">
+								<div class="relative">
+									<a href="../RolVoluntario/VoluntarioTablaServicios.html"
+										class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Servicios</a>
+								</div>
+								<div class="relative">
+									<a href="../RolVoluntario/VoluntarioTablaEmergencias.html"
+										class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Emergencias</a>
+								</div>
+								<div class="relative">
+									<a href="../RolVoluntario/VoluntarioTablaClaves.html"
+										class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Claves</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="hidden md:block">
+						<div class="ml-4 flex items-center md:ml-6">
+							<button type="button"
+								class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
+								<span class="absolute -inset-1.5"></span> <span class="sr-only">View
+									notifications</span>
+								<svg class="size-6" fill="none" viewBox="0 0 24 24"
+									stroke-width="1.5" stroke="currentColor" aria-hidden="true"
+									data-slot="icon">
+                                    <path stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                                </svg>
+							</button>
+
+							<div class="relative ml-3">
+								<div>
+									<button type="button"
+										class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
+										id="user-menu-button" aria-expanded="false"
+										aria-haspopup="true">
+										<span class="absolute -inset-1.5"></span> <span
+											class="sr-only">Open user menu</span> <img
+											class="size-8 rounded-full" id="imagenUsuarioPerfil"
+											src="https://us.123rf.com/450wm/thesomeday123/thesomeday1231712/thesomeday123171200009/91087331-icono-de-perfil-de-avatar-predeterminado-para-hombre-marcador-de-posici%C3%B3n-de-foto-gris-vector-de.jpg?ver=6"
+											alt="Imagen de Perfil del usuario">
+									</button>
+								</div>
+
+								<div
+									class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 ring-1 shadow-lg ring-black/5 focus:outline-hidden"
+									role="menu" aria-orientation="vertical"
+									aria-labelledby="user-menu-button" tabindex="-1">
+									<a href="../RolVoluntario/VoluntarioPerfilUsuario.jsp"
+										class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+										tabindex="-1" id="user-menu-item-0">Perfil</a> <a href="#"
+										class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+										tabindex="-1" id="user-menu-item-2">Cerrar</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="-mr-2 flex md:hidden">
+						<button type="button"
+							class="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
+							aria-controls="mobile-menu" aria-expanded="false">
+							<span class="absolute -inset-0.5"></span> <span class="sr-only">Open
+								main menu</span>
+							<svg class="block size-6" fill="none" viewBox="0 0 24 24"
+								stroke-width="1.5" stroke="currentColor" aria-hidden="true"
+								data-slot="icon">
+                                <path stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+							<svg class="hidden size-6" fill="none" viewBox="0 0 24 24"
+								stroke-width="1.5" stroke="currentColor" aria-hidden="true"
+								data-slot="icon">
+                                <path stroke-linecap="round"
+									stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                            </svg>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="md:hidden" id="mobile-menu">
+				<div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+					<div class="relative">
+						<a href="../RolVoluntario/VoluntarioTablaServicios.html"
+							class="block rounded-md px-3 py-2 text-base font-medium text-white"
+							aria-current="page" id="dashboard-menu">Servicios</a>
+					</div>
+					<div class="relative">
+						<a href="../RolVoluntario/VoluntarioTablaEmergencias.html"
+							class="block rounded-md px-3 py-2 text-base font-medium text-white"
+							aria-current="page" id="dashboard-menu">Emergencias</a>
+					</div>
+					<div class="relative">
+						<a href="../RolVoluntario/VoluntarioTablaClaves.html"
+							class="block rounded-md px-3 py-2 text-base font-medium text-white"
+							aria-current="page" id="dashboard-menu">Claves</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<header class="bg-white shadow-sm">
+			<div
+				class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex justify-between items-center">
+				<h1 class="text-3xl font-bold tracking-tight text-gray-900">Tabla
+					Servicios</h1>
+			</div>
+		</header>
+		<main>
+			<div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+				<div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+					<x-placeholder>
+					<div class="mx-auto w-full bg-white p-6 shadow rounded-xl">
+						<div class="flex justify-between items-center mb-4">
+							<input type="text" id="buscador" placeholder="Buscar..."
+								class="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+
+							<div class="flex items-center gap-4">
+								<select id="filasPorPagina"
+									class="p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+									<option value="5">5 filas</option>
+									<option value="10">10 filas</option>
+									<option value="15">15 filas</option>
+								</select>
+							</div>
+						</div>
+
+
+						<table class="table-auto min-w-full rounded-xl" id="example">
+							<thead>
+								<tr class="bg-gray-50">
+									<th scope="col"
+										class="p-5 text-left whitespace-nowrap text-sm leading-6 font-semibold text-gray-900 capitalize">
+										Titulo</th>
+									<th scope="col"
+										class="p-5 text-left whitespace-nowrap text-sm leading-6 font-semibold text-gray-900 capitalize">
+										Fecha</th>
+									<th scope="col"
+										class="p-5 text-left whitespace-nowrap text-sm leading-6 font-semibold text-gray-900 capitalize">
+										Limite Inscripcion</th>
+									<th scope="col"
+										class="p-5 text-left whitespace-nowrap text-sm leading-6 font-semibold text-gray-900 capitalize">
+										Tipo</th>
+									<th scope="col"
+										class="p-5 text-left whitespace-nowrap text-sm leading-6 font-semibold text-gray-900 capitalize">
+										Categoria</th>
+									<th scope="col"
+										class="p-5 text-left whitespace-nowrap text-sm leading-6 font-semibold text-gray-900 capitalize">
+										Asistencias</th>
+									<th scope="col"
+										class="p-5 text-left whitespace-nowrap text-sm leading-6 font-semibold text-gray-900 capitalize">
+										Acciones</th>
+								</tr>
+							</thead>
+							<tbody id="bodytabla" class="divide-y divide-gray-300">
+							</tbody>
+						</table>
+						<div class="flex justify-between items-center mt-4">
+							<button id="prevPage"
+								class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Anterior</button>
+							<span id="paginaActual" class="text-gray-700"></span>
+							<button id="nextPage"
+								class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">Siguiente</button>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+	</div>
+	</div>
+
+
+
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	<script src="//unpkg.com/alpinejs" defer></script>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+	<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cerrarLink = document.getElementById('user-menu-item-2');
+            cerrarLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                fetch("http://localhost:8080/VistaVoluntia/usuario", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: "accion=cerrar+sesion"
+                })
+                    .then(response => window.location.href = "http://localhost:8080/VistaVoluntia/")
+                    .catch(error => {
+                        console.error("Error al cerrar sesión:", error);
+                        window.location.href = "http://localhost:8080/VistaVoluntia/";
+                    });
+            });
+        });
+    </script>
+
+	<script>
+        function mostrarNotificacion(status, mensaje) {
+            const container = document.createElement('div');
+            container.style.position = 'fixed';
+            container.style.bottom = '20px';
+            container.style.right = '20px';
+            container.style.zIndex = '9999';
+            container.style.maxWidth = '300px';
+            container.style.fontFamily = 'Inter, sans-serif';
+            let notificationHTML = "";
+
+            if (status === 'success') {
+                notificationHTML = `
+        <div class="flex items-center p-4 bg-white rounded-lg shadow-lg">
+          <div class="flex-shrink-0 p-2 bg-emerald-500 rounded-full">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 10-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <div class="ml-3">
+            <p class="text-gray-800 font-bold">Éxito</p>
+            <p class="text-gray-600 text-sm">${mensaje}</p>
+          </div>
+        </div>`;
+            } else if (status === 'warning') {
+                notificationHTML = `
+        <div class="flex items-center p-4 bg-white rounded-lg shadow-lg">
+          <div class="flex-shrink-0 p-2 bg-yellow-500 rounded-full">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l6.518 11.59c.75 1.334-.213 2.992-1.743 2.992H3.482c-1.53 0-2.493-1.658-1.743-2.992l6.518-11.59z"/>
+            </svg>
+          </div>
+          <div class="ml-3">
+            <p class="text-gray-800 font-bold">Advertencia</p>
+            <p class="text-gray-600 text-sm">${mensaje}</p>
+          </div>
+        </div>`;
+            } else if (status === 'error') {
+                notificationHTML = `
+        <div class="flex items-center p-4 bg-white rounded-lg shadow-lg">
+          <div class="flex-shrink-0 p-2 bg-red-500 rounded-full">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-11a1 1 0 112 0v4a1 1 0 11-2 0V7zm1 8a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <div class="ml-3">
+            <p class="text-gray-800 font-bold">Error</p>
+            <p class="text-gray-600 text-sm">${mensaje}</p>
+          </div>
+        </div>`;
+            }
+
+            container.innerHTML = notificationHTML;
+            document.body.appendChild(container);
+            setTimeout(() => container.remove(), 3000);
+        }
+    </script>
+
+	<script>
+        $(document).off('click', '.btn-modificar');
+        $(document).on('click', '.btn-modificar', function () {
+            const btn = $(this);
+            btn.prop('disabled', true);
+            const servicio = btn.data('servicio');
+            $.ajax({
+                url: 'http://localhost:8080/VistaVoluntia/inscripcion',
+                method: 'POST',
+                data: {
+                    accion: 'inscribir',
+                    idServicio: servicio.idServicio,
+                    idUsuario: window.sessionUserId
+                },
+                success: function (respuesta) {
+                    if (respuesta.includes('exitosamente') || respuesta.includes('con éxito')) {
+                        mostrarNotificacion('success', respuesta);
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 3000);
+                    } else if (respuesta.includes('ya está inscrito')) {
+                        mostrarNotificacion('warning', respuesta);
+                    } else {
+                        mostrarNotificacion('error', respuesta);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    mostrarNotificacion('error', 'Error al inscribir el usuario: ' + error);
+                },
+                complete: function () {
+                    btn.prop('disabled', false);
+                }
+            });
+        });
+    </script>
+
+	<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let tbody = document.getElementById("bodytabla");
+            let filasOriginales = [];
+            let filasFiltradas = [];
+            let paginaActual = 1;
+            let filasPorPagina = parseInt(document.getElementById("filasPorPagina").value);
+
+            function cargarFilas() {
+                filasOriginales = Array.from(tbody.getElementsByTagName("tr"));
+                filasFiltradas = [...filasOriginales];
+                renderTabla();
+            }
+
+            function renderTabla() {
+                let totalPaginas = Math.ceil(filasFiltradas.length / filasPorPagina);
+                paginaActual = Math.min(paginaActual, totalPaginas) || 1;
+                let inicio = (paginaActual - 1) * filasPorPagina;
+                let fin = inicio + filasPorPagina;
+                tbody.innerHTML = "";
+                filasFiltradas.slice(inicio, fin).forEach(fila => tbody.appendChild(fila));
+                document.getElementById("paginaActual").innerText = `Página ${paginaActual} de ${totalPaginas || 1}`;
+                document.getElementById("prevPage").disabled = paginaActual === 1;
+                document.getElementById("nextPage").disabled = paginaActual === totalPaginas;
+            }
+
+            function cambiarPagina(nuevaPagina) {
+                let totalPaginas = Math.ceil(filasFiltradas.length / filasPorPagina);
+                if (nuevaPagina > 0 && nuevaPagina <= totalPaginas) {
+                    paginaActual = nuevaPagina;
+                    renderTabla();
+                }
+            }
+
+            function buscar() {
+                let filtro = document.getElementById("buscador").value.toLowerCase().trim();
+                filasFiltradas = filtro === "" ? [...filasOriginales] : filasOriginales.filter(fila => fila.innerText.toLowerCase().includes(filtro));
+                paginaActual = 1;
+                renderTabla();
+            }
+
+            document.getElementById("prevPage").addEventListener("click", () => cambiarPagina(paginaActual - 1));
+            document.getElementById("nextPage").addEventListener("click", () => cambiarPagina(paginaActual + 1));
+            document.getElementById("buscador").addEventListener("input", buscar);
+            document.getElementById("filasPorPagina").addEventListener("change", function () {
+                filasPorPagina = parseInt(this.value);
+                paginaActual = 1;
+                renderTabla();
+            });
+
+            setTimeout(cargarFilas, 500);
+        });
+    </script>
+
+	<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const formData = new URLSearchParams();
+            formData.append("accion", "sesion");
+            fetch("http://localhost:8080/VistaVoluntia/login", {
+                method: "POST",
+                credentials: "include",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: formData.toString()
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById("user-info").innerHTML = `<p>Error: ${data.error}</p>`;
+                        return;
+                    }
+                    window.sessionUserId = data.idUsuario;
+                    document.getElementById("idUsuario").textContent = data.idUsuario;
+                    if (data.imagenUsuarioPerfil && data.imagenUsuarioPerfil !== "") {
+                        document.getElementById("imagenUsuarioPerfil").src = "data:image/png;base64," + data.imagenUsuarioPerfil;
+                    } else {
+                        document.getElementById("imagenUsuarioPerfil").alt = "No se ha proporcionado una imagen de perfil.";
+                    }
+                })
+                .catch(error => {
+                    console.error("Error al obtener los datos del usuario: ", error);
+                    document.getElementById("user-info").innerHTML = "<p>Error al obtener los datos del usuario.</p>";
+                });
+        });
+    </script>
+
+	<script>
+        $(document).ready(function () {
+            $.ajax({
+                url: 'http://localhost:8080/VistaVoluntia/servicio?accion=listaServicios',
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    $('#bodytabla').empty();
+                    $.each(data, function (index, servicio) {
+                        var countCellId = 'count-' + servicio.idServicio;
+                        var row = `
+            <tr>
+              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">${servicio.tituloServicio}</td>
+              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">${servicio.fechaInicioServicio}</td>
+              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">${servicio.fechaLimiteInscripcionServicio}</td>
+              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">${servicio.tipoServicio}</td>
+              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">${servicio.categoriaServicio}</td>
+              <td id="${countCellId}" class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">Cargando...</td>
+              <td class="flex p-5 items-center gap-0.5">
+                <button class="p-2 rounded-full bg-white group transition-all duration-500 flex items-center btn-modificar" style="color: rgb(250, 181, 43);" data-servicio='${JSON.stringify(servicio)}'>
+                  Apuntarse
+                </button>
+              </td>
+            </tr>`;
+                        $('#bodytabla').append(row);
+                        $.ajax({
+                            url: 'http://localhost:8080/VistaVoluntia/inscripcion',
+                            method: 'POST',
+                            data: {
+                                accion: 'contar',
+                                idServicio: servicio.idServicio
+                            },
+                            success: function (respuesta) {
+                                $('#' + countCellId).html(respuesta);
+                            },
+                            error: function (xhr, status, error) {
+                                console.error('Error al obtener el conteo para el servicio ' + servicio.idServicio + ':', error);
+                                $('#' + countCellId).html('Error');
+                            }
+                        });
+                    });
+                    $('#example').DataTable();
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error en la solicitud AJAX de listaServicios:', error);
+                }
+            });
+        });
+    </script>
+
+	<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userMenuButton = document.getElementById('user-menu-button');
+            const userMenu = document.querySelector('[aria-labelledby="user-menu-button"]');
+            const mobileMenuButton = document.querySelector('[aria-controls="mobile-menu"]');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (userMenuButton && userMenu) {
+                userMenu.classList.add('hidden');
+                userMenuButton.setAttribute('aria-expanded', 'false');
+                userMenuButton.addEventListener('click', () => {
+                    const isExpanded = userMenuButton.getAttribute('aria-expanded') === 'true';
+                    userMenuButton.setAttribute('aria-expanded', !isExpanded);
+                    userMenu.classList.toggle('hidden');
+                });
+                document.addEventListener('click', (event) => {
+                    if (!userMenu.contains(event.target) && !userMenuButton.contains(event.target)) {
+                        userMenu.classList.add('hidden');
+                        userMenuButton.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            }
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                mobileMenuButton.addEventListener('click', () => {
+                    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+                    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            const menuOptions = document.querySelectorAll('.relative');
+            menuOptions.forEach(option => {
+                const subMenu = option.querySelector('.absolute');
+                let timeout;
+                option.addEventListener('mouseenter', () => {
+                    clearTimeout(timeout);
+                    subMenu.classList.remove('hidden');
+                });
+                option.addEventListener('mouseleave', (event) => {
+                    if (!subMenu.contains(event.relatedTarget)) {
+                        timeout = setTimeout(() => subMenu.classList.add('hidden'), 100);
+                    }
+                });
+                subMenu.addEventListener('mouseenter', () => {
+                    clearTimeout(timeout);
+                    subMenu.classList.remove('hidden');
+                });
+                subMenu.addEventListener('mouseleave', (event) => {
+                    if (!option.contains(event.relatedTarget)) {
+                        timeout = setTimeout(() => subMenu.classList.add('hidden'), 200);
+                    }
+                });
+                option.addEventListener('click', (event) => {
+                    const isExpanded = subMenu.classList.contains('hidden');
+                    subMenu.classList.toggle('hidden', !isExpanded);
+                });
+            });
+            const menuItems = document.querySelectorAll('.ml-10 a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', (event) => {
+                    menuItems.forEach(link => link.classList.remove('bg-gray-900', 'text-white'));
+                    item.classList.add('bg-gray-900', 'text-white');
+                });
+            });
+            document.addEventListener('click', (event) => {
+                const subMenus = document.querySelectorAll('.absolute');
+                subMenus.forEach(subMenu => {
+                    if (!subMenu.contains(event.target) && !event.target.closest('.relative')) {
+                        subMenu.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

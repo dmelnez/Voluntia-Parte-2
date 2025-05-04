@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Voluntia</title>
+  <link rel="icon" type="image/x-icon" href="Imagenes/favicon.ico">
+
+<link
+	href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+	rel="stylesheet">
+</head>
+
+<body>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script defer
+		src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+	<section x-data="{ atTop: true }">
+		<div
+			class="fixed z-50 w-full px-8 py-4 transition-all duration-1000 rounded-full mt-4 max-w-2xl inset-x-0 mx-auto ease-in-out transform"
+			:class="{ 'bg-black bg-opacity-90 backdrop-blur-xl max-w-4xl': !atTop, 'max-w-2xl': atTop }"
+			@scroll.window="atTop = (window.pageYOffset > 50 ? false : true)">
+			<div x-data="{ open: false }"
+				class="flex flex-col w-full p-2 mx-auto md:items-center md:justify-between md:flex-row">
+				<div class="flex flex-row items-center justify-between">
+					<span class="font-bold tracking-tighter uppercase"
+						:class="{ 'text-black': atTop, 'text-white': !atTop }">✺
+						Voluntia</span>
+					<button class="md:hidden focus:outline-none" @click="open = !open">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+							fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round"
+								stroke-linejoin="round" stroke-width="2"
+								d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+					</button>
+				</div>
+				<nav :class="{'flex': open, 'hidden': !open}"
+					class="flex-col flex-grow gap-8 hidden pb-4 md:pb-0 md:flex md:flex-row lg:ml-auto justify-end">
+					<a :class="{ 'text-black': atTop, 'text-white': !atTop }"
+						href="index.html">Inicio</a> <a
+						:class="{ 'text-black': atTop, 'text-white': !atTop }"
+						href="Nosotros.html">Nosotros</a> <a
+						:class="{ 'text-black': atTop, 'text-white': !atTop }"
+						href="ManualUsuario.html">Manual Usuario</a> <a
+						:class="{ 'text-black': atTop, 'text-white': !atTop }"
+						href="login.html">Acceso</a>
+				</nav>
+			</div>
+		</div>
+
+		<div class="bg-white">
+			<div class="flex items-center justify-center min-h-screen pt-24">
+				<div class="w-full max-w-md px-4">
+					<h2 class="mb-6 text-center text-3xl font-extrabold text-gray-900">
+						Inicio de sesión</h2>
+					<div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+
+						<!-- Mensaje de error de servidor -->
+						<div id="serverError" class="hidden mb-4 text-red-600 font-medium">
+							Usuario o contraseña incorrectos.</div>
+
+						<form id="loginForm" action="/VistaVoluntia/login" method="POST"
+							class="space-y-6" novalidate>
+							<input type="hidden" name="accion" value="validar" />
+
+							<div>
+								<label for="correoUsuario"
+									class="block text-sm font-medium text-gray-700">Email</label>
+								<div class="mt-1">
+									<input id="correoUsuario" name="correoUsuario" type="email"
+										autocomplete="email" placeholder="Introduzca el email"
+										class="appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+									<p id="emailError" class="text-red-500 text-xs mt-1 hidden">Este
+										campo es obligatorio</p>
+								</div>
+							</div>
+
+							<div>
+								<label for="passwordUsuario"
+									class="block text-sm font-medium text-gray-700">Contraseña</label>
+								<div class="mt-1">
+									<input id="passwordUsuario" name="passwordUsuario"
+										type="password" autocomplete="current-password"
+										placeholder="Contraseña"
+										class="appearance-none rounded-md block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+									<p id="passwordError" class="text-red-500 text-xs mt-1 hidden">Este
+										campo es obligatorio</p>
+								</div>
+							</div>
+
+							<div class="flex items-center justify-between">
+								<div class="text-sm">
+									<a href="recuperarContrasenia.html"
+										class="font-medium text-blue-600 hover:text-blue-500">
+										¿Has olvidado la contraseña? </a>
+								</div>
+							</div>
+
+							<div>
+								<button type="submit" id="loginButton"
+									class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+									Iniciar sesión</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script>
+        // Validación de campos vacíos
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            const emailInput = document.getElementById("correoUsuario");
+            const passwordInput = document.getElementById("passwordUsuario");
+            const emailError = document.getElementById("emailError");
+            const passwordError = document.getElementById("passwordError");
+            let isValid = true;
+
+            if (emailInput.value.trim() === "") {
+                emailError.classList.remove("hidden");
+                isValid = false;
+            } else {
+                emailError.classList.add("hidden");
+            }
+
+            if (passwordInput.value.trim() === "") {
+                passwordError.classList.remove("hidden");
+                isValid = false;
+            } else {
+                passwordError.classList.add("hidden");
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+
+        // Mostrar mensaje de error de servidor si viene ?error=1
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('error') === '1') {
+                document.getElementById('serverError').classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>
